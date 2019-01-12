@@ -63,23 +63,34 @@ void Robot::TeleopInit() {}
 
 void Robot::TeleopPeriodic()
 {
-  m_tankDrive.TankDrive(m_driverJoystick.GetY(), m_driverJoystick.GetTwist());
+  // Controller mode D
+  //int muliplier = 1;
+  //int leftStick = 1;
+  //int rightStick = 3;
+  // Controller mode X
+  int multiplier = -1;
+  int leftStick = 1;
+  int rightStick = 5;
 
-  if (m_driverJoystick.GetButton(frc::Joystick::ButtonType::kTriggerButton))
+  double leftSpeed = multiplier * m_driverJoystick.GetAxis((frc::Joystick::AxisType)leftStick);
+  double rightSpeed = multiplier * m_driverJoystick.GetAxis((frc::Joystick::AxisType)rightStick);
+  m_tankDrive.TankDrive(leftSpeed, rightSpeed);
+
+  // Control climb wheels
+  double leftTrigger = m_driverJoystick.GetAxis((frc::Joystick::AxisType)2);
+  double rightTrigger = m_driverJoystick.GetAxis((frc::Joystick::AxisType)3);
+
+  double climbSpeed = 0;
+  if (leftTrigger > 0)
   {
-    m_climbLeft.Set(1.0);
-    m_climbRight.Set(-1.0);
+    climbSpeed = leftTrigger;
   }
-  else if (m_driverJoystick.GetButton(frc::Joystick::ButtonType::kTriggerButton))
+  else if (rightTrigger > 0)
   {
-    m_climbLeft.Set(-1.0);
-    m_climbRight.Set(1.0);
+    climbSpeed = -rightTrigger;
   }
-  else
-  {
-    m_climbLeft.Set(0);
-    m_climbRight.Set(0);
-  }
+  m_climbLeft.Set(climbSpeed);
+  m_climbRight.Set(-climbSpeed);
 }
 
 void Robot::TestPeriodic() {}
