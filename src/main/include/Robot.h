@@ -14,7 +14,7 @@
 #include "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h"
 #include <frc/SpeedControllerGroup.h>
 #include <frc/Drive/DifferentialDrive.h>
-#include <frc/Joystick.h>
+#include <frc/XboxController.h>
 #include <frc/Spark.h>
 
 class Robot : public frc::TimedRobot {
@@ -43,7 +43,7 @@ class Robot : public frc::TimedRobot {
 
   frc::DifferentialDrive m_tankDrive { m_left, m_right };
 
-  frc::Joystick m_driverJoystick {0};
+  frc::XboxController m_driverJoystick {0};
 
   frc::Spark m_climbLeft {0};
   frc::Spark m_climbRight {1};
