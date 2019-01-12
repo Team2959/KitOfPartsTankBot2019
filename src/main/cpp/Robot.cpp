@@ -64,6 +64,22 @@ void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic()
 {
   m_tankDrive.TankDrive(m_driverJoystick.GetY(), m_driverJoystick.GetTwist());
+
+  if (m_driverJoystick.GetButton(frc::Joystick::ButtonType::kTriggerButton))
+  {
+    m_climbLeft.Set(1.0);
+    m_climbRight.Set(-1.0);
+  }
+  else if (m_driverJoystick.GetButton(frc::Joystick::ButtonType::kTriggerButton))
+  {
+    m_climbLeft.Set(-1.0);
+    m_climbRight.Set(1.0);
+  }
+  else
+  {
+    m_climbLeft.Set(0);
+    m_climbRight.Set(0);
+  }
 }
 
 void Robot::TestPeriodic() {}
