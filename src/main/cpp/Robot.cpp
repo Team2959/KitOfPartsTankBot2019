@@ -74,8 +74,8 @@ void Robot::TeleopPeriodic()
   int leftStick = 1;
   int rightStick = 5;
 
-  double leftSpeed = multiplier * m_driverJoystick.GetY(frc::GenericHID::JoystickHand::kLeftHand);
-  double rightSpeed = multiplier * m_driverJoystick.GetY(frc::GenericHID::JoystickHand::kRightHand);
+  double leftSpeed = jsc.Conditioned(multiplier * m_driverJoystick.GetY(frc::GenericHID::JoystickHand::kLeftHand));
+  double rightSpeed = jsc.Conditioned(multiplier * m_driverJoystick.GetY(frc::GenericHID::JoystickHand::kRightHand));
   m_tankDrive.TankDrive(leftSpeed, rightSpeed);
 
   // Control climb wheels

@@ -17,6 +17,8 @@
 #include <frc/XboxController.h>
 #include <frc/Spark.h>
 
+#include "JoystickConditioning.h"
+
 class Robot : public frc::TimedRobot {
  public:
   void RobotInit() override;
@@ -47,4 +49,6 @@ class Robot : public frc::TimedRobot {
 
   frc::Spark m_climbLeft {0};
   frc::Spark m_climbRight {1};
+
+  JoystickConditioning jsc{-0.1,0.1,-0.1,0.1,1,1};
 };
