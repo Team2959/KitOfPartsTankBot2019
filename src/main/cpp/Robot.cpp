@@ -70,19 +70,20 @@ void Robot::TeleopPeriodic()
   //int leftStick = 1;
   //int rightStick = 3;
   // Controller mode X
-  int multiplier = -1;
   int leftStick = 1;
   int rightStick = 5;
 
-  double leftSpeed = jsc.Conditioned(multiplier * m_driverJoystick.GetY(frc::GenericHID::JoystickHand::kLeftHand));
-  double rightSpeed = jsc.Conditioned(multiplier * m_driverJoystick.GetY(frc::GenericHID::JoystickHand::kRightHand));
+  //double leftSpeed = jsc.Conditioned(multiplier * m_driverJoystick.GetY(frc::GenericHID::JoystickHand::kLeftHand));
+  //double rightSpeed = jsc.Conditioned(multiplier * m_driverJoystick.GetY(frc::GenericHID::JoystickHand::kRightHand));
+    double leftSpeed = jsc.Conditioned(-0.99 * m_driverJoystickLeft.GetY(frc::GenericHID::JoystickHand::kLeftHand));
+    double rightSpeed = jsc.Conditioned(-1 * m_driverJoystickRight.GetY(frc::GenericHID::JoystickHand::kLeftHand));
   m_tankDrive.TankDrive(leftSpeed, rightSpeed);
 
   // Control climb wheels
-  double leftTrigger = m_driverJoystick.GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand);
-  double rightTrigger = m_driverJoystick.GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand);
+  //double leftTrigger = m_driverJoystick.GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand);
+  //double rightTrigger = m_driverJoystick.GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand);
 
-  double climbSpeed = 0;
+  /*double climbSpeed = 0;
   if (leftTrigger > 0)
   {
     climbSpeed = leftTrigger;
@@ -92,7 +93,7 @@ void Robot::TeleopPeriodic()
     climbSpeed = -rightTrigger;
   }
   m_climbLeft.Set(climbSpeed);
-  m_climbRight.Set(-climbSpeed);
+  m_climbRight.Set(-climbSpeed);*/
 }
 
 void Robot::TestPeriodic() {}

@@ -15,6 +15,7 @@
 #include <frc/SpeedControllerGroup.h>
 #include <frc/Drive/DifferentialDrive.h>
 #include <frc/XboxController.h>
+#include <frc/Joystick.h>
 #include <frc/Spark.h>
 
 #include "JoystickConditioning.h"
@@ -45,7 +46,10 @@ class Robot : public frc::TimedRobot {
 
   frc::DifferentialDrive m_tankDrive { m_left, m_right };
 
-  frc::XboxController m_driverJoystick {0};
+ // frc::XboxController m_driverJoystick {0};
+ frc::Joystick m_driverJoystickLeft {0};
+ frc::Joystick m_driverJoystickRight {1};
+
 
   frc::Spark m_climbLeft {0};
   frc::Spark m_climbRight {1};
